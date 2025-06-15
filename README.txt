@@ -1,1 +1,0 @@
-"npm install" all'interno della cartella frontend per installare tutti i pacchetti di angular e poter runnare il progetto
