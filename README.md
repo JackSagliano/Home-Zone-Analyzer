@@ -1,8 +1,10 @@
 # 🏙️ Home Zone Analyzer
 
-**Home Zone Analyzer** is a web application that helps users explore and evaluate different urban areas based on open geographic data (GeoJSON) and predefined criteria such as the presence of green areas, cultural spots, public transport, Wi-Fi, and more.
-
-It combines a Node.js backend, a dynamic frontend, and a PostgreSQL + PostGIS database—all containerized and ready to deploy using Docker and Kubernetes.
+**Home Zone Analyzer** is a platform designed to help users identify the best property to purchase in the city of Bologna, based on their personal preferences.
+Users are asked to fill out a questionnaire specifying the features their ideal property should have.
+Once completed, they can interact with a map to select markers and polygons near the areas where they are interested in buying.
+Home Zone Analyzer then assigns a score to each area or property:
+the higher the score, the better the match with the preferences expressed in the questionnaire.
 
 ---
 
