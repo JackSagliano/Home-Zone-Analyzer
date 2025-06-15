@@ -22,8 +22,7 @@ It combines a Node.js backend, a dynamic frontend, and a PostgreSQL + PostGIS da
 - **Node.js** / Express.js
 - **PostgreSQL** + **PostGIS**
 - **Docker**, **Docker Compose**
-- **Kubernetes** 
-- **GeoJSON** spatial datasets
+- **Kubernetes**
 
 
 ---
