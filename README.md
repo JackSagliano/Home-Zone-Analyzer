@@ -38,7 +38,7 @@ The app uses open datasets in GeoJSON format for the city of **Bologna**, includ
 - Public Wi-Fi spots
 - City districts
 
-You can find the following data at: https://opendata.comune.bologna.it/pages/home/)
+You can find the following data at: https://opendata.comune.bologna.it/pages/home/
 
 ---
 
