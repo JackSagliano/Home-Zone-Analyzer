@@ -48,13 +48,17 @@ The app uses open datasets in GeoJSON format for the city of **Bologna**, includ
 git clone https://github.com/JackSagliano/Home-Zone-Analyzer.git
 cd Home-Zone-Analyzer
 ```
-
-2. **Start with Docker Compose**
+2. **Install the dependencies**
+```bash
+cd backend
+npm install
+```
+4. **Start with Docker Compose**
 ```bash
 docker-compose up --build
 ```
 
-3. **Access the app via**
+4. **Access the app via**
 ```bash
 http://localhost:30080
 ```
