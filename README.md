@@ -31,14 +31,14 @@ It combines a Node.js backend, a dynamic frontend, and a PostgreSQL + PostGIS da
 
 The app uses open datasets in GeoJSON format for the city of **Bologna**, including:
 
-- Green areas (`aree_verdi.geojson`)
+- Green areas 
 - Museums, libraries, cinemas, theaters
 - Hospitals and sports centers
 - Bus stops and train stations
 - Public Wi-Fi spots
-- City districts (`quartieri_bologna.geojson`)
-- Public events
+- City districts
 
+You can find the following data at: https://opendata.comune.bologna.it/pages/home/)
 ---
 
 ## 🚀 Getting Started (Local)
