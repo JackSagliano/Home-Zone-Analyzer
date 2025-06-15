@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+  database:
+    image: jacksagliano99/database:latest
+    container_name: postgres-db
+    environment:
+      POSTGRES_DB: home-zone-analyzer-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: context-aware-2024
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - backend_network
+
+  backend:
+    image: jacksagliano99/backend:latest
+    container_name: backend-server
+    depends_on:
+      - database
+    environment:
+      DATABASE_HOST: database
+      DATABASE_PORT: 5432
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: context-aware-2024
+      DATABASE_NAME: home-zone-analyzer-db
+    ports:
+      - "3000:3000"
+    networks:
+      - backend_network
+
+  frontend:
+    image: jacksagliano99/frontend:latest
+    container_name: frontend-server
+    depends_on:
+      - backend
+    ports:
+      - "4200:80"  # Adatta la porta secondo le esigenze del tuo progetto
+    networks:
+      - backend_network
+
+volumes:
+  db_data:
+
+networks:
+  backend_network:
