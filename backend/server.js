@@ -16,14 +16,14 @@ app.use(bodyParser.json());
 app.use(cors());
 // Configurazione del pool di connessioni
 const pool = new Pool({
-  user: 'postgres',
-  host: 'database',
-  database: 'home-zone-analyzer-db',
-  password: 'context-aware-2024',
-  port: 5432,
-  max: 20, // Numero massimo di connessioni nel pool
-  idleTimeoutMillis: 30000, // tempo di inattività massimo in millisecondi
-  connectionTimeoutMillis: 30000, // tempo di attesa massimo per una nuova connessione
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
+  max: 20,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 30000
 });
 
 
