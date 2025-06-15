@@ -1,0 +1,145 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f7f8fc;
+  color: #333;
+}
+
+.book-container {
+  max-width: 1000px;
+  margin: auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book-cover {
+  text-align: center;
+}
+
+.brand-logo {
+  width: 150px;
+  height: auto;
+}
+
+.book-title {
+  font-size: 32px;
+  font-weight: bold;
+  color: #4a90e2;
+  margin-top: 20px;
+}
+
+.book-page {
+  display: flex;
+  width: 100%;
+  margin-top: 40px;
+}
+
+.left-page,
+.right-page {
+  width: 50%;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.range-slider {
+  width: 100%;
+  margin: 10px 0;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #ddd;
+  height: 5px;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.range-slider:hover {
+  opacity: 1;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4a90e2;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.range-slider::-webkit-slider-thumb:hover {
+  background: #357ABD;
+}
+
+.range-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4a90e2;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.range-slider::-moz-range-thumb:hover {
+  background: #357ABD;
+}
+
+.range-label {
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-primary {
+  background-color: #4a90e2;
+  border-color: #4a90e2;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #357ABD;
+  transform: translateY(-2px);
+}
+.range-value {
+  text-align: center;
+  font-weight: bold;
+  
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 992px) {
+  .book-page {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .left-page, .right-page {
+    width: 100%;
+  }
+}
+
+#error-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  display: none; /* Nascondi il popup inizialmente */
+}

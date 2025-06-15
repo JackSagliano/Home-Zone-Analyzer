@@ -1,0 +1,221 @@
+<header>
+  <div class="logo">
+    <img src="assets/logo_progetto.png" alt="Home Zone Analyzer">
+  </div>
+  <nav>
+    <ul>
+      <li><a routerLink="/questionario">Questionario</a></li>
+      <li><a (click)="logOut()" style="cursor: pointer;">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+<!-- Popup di caricamento -->
+<div id="loading-popup" class="loading-popup">
+  Caricamento delle risorse...
+</div>
+
+<!-- Pannello per l'indice di Moran -->
+<div id="moran-panel" class="sidebar" *ngIf="(moranPrezziValue != -9999 || moranPoiValue != -9999)">
+  <div class="close-button" (click)="chiudiMoranPanel()">
+    <i class="fa-solid fa-x fa-xs"></i>
+  </div>
+  
+  <div id="moran-interpretation" *ngIf="moranPrezziValue != -9999">
+    <p><span id="moran-interpretation-display">{{ moranInterpretation }}</span></p>
+  </div>
+  
+  <div id="poi-density-interpretation" *ngIf="moranPoiValue != -9999">
+    <p><span id="poi-density-interpretation-display">{{ poiDensityInterpretation }}</span></p>
+  </div>
+</div>
+
+
+
+
+
+<main class="main">
+  
+  <!-- Sidebar -->
+  <div class="listing__facets facets-section mobile-hide" *ngIf="mapLoaded== true">
+    <section class="facets-section__main-categories">
+      <button tabindex="auto" aria-label="Filtra" (click)="mostraMenuLaterale()"class="btn btn-revolution-white facets-section__category-logo js--open-filter" id="filterBtn">
+        <i class="bi bi-filter"></i>
+      </button>
+      <span class="facets-section__category-description">Menu</span>
+      <button tabindex="auto" aria-label="Brand" (click)="enableMarkerMode()" class="btn btn-revolution-white facets-section__category-logo js--open-filter" >
+        <i class="fa-solid fa-location-dot"></i>
+      </button>
+      <span class="facets-section__category-description">Aggiungi immobile</span>
+
+
+      <button tabindex="auto" aria-label="Prezzo"  *ngIf="lista_immobili_candidati.length > 0 || lista_aree_candidate.length >0" (click)="enableRemoveMarkerMode()" data-filter="Prezzo" class="btn btn-revolution-white facets-section__category-logo js--open-filter">
+        <i class="fa-solid fa-x"></i>
+      </button>
+      <span *ngIf="lista_immobili_candidati.length > 0 || lista_aree_candidate.length >0" class="facets-section__category-description">Rimuovi immobile/area</span>
+
+
+      <button tabindex="auto" aria-label="Prezzo"  (click)="enablePolygonMode()" class="btn btn-revolution-white facets-section__category-logo js--open-filter">
+        <i class="fa-solid fa-draw-polygon"></i>
+        <i class="icon-euro-active"></i>
+      </button>
+      <span class="facets-section__category-description">Aggiungi area</span>
+      <button tabindex="auto" aria-label="Migliori Posizioni"  (click)="mostraMiglioriPosizioni()" class="btn btn-revolution-white facets-section__category-logo js--open-filter">
+        <i class="fa-regular fa-star"></i>
+      </button>
+      <span class="facets-section__category-description">{{miglioriPosizioni_visibili == false ? 'Migliori posizioni' : 'Nascondi migliori posizioni'}}</span>
+      
+     
+    </section>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <section class="content-section">
+      <div id="map" class="map"></div>
+    </section>
+    <div *ngIf="mapLoaded== true && menu_visibile == true" class="facet-container flyout slide-left is-active" id="menu-panel">    
+      <section class="facet-container__facets flyout__body">    
+          <div class="facets facet-container__content">
+          <div class="facet custom-accordion">
+            <div class="filter-container">
+              <h3>Filtra punti di interesse</h3>
+              <form>
+                <div *ngFor="let question of questionarioData" class="filter-item">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [id]="question.tipo" (change)="onFilterChange($event, question.tipo)">
+                    <label class="form-check-label" [for]="question.tipo">
+                      {{ question.tipo }}
+                    </label>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div *ngIf="lista_immobili_candidati.length>0 || lista_aree_candidate.length > 0" class="filter-container">
+              <h3>Analisi del vicinato</h3>
+              <hr>
+              <div class="legend">
+                <div class="legend-item">
+                  <span class="legend-color" style="background-color: red;"></span>
+                  <span class="legend-label">Zone scarse</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-color" style="background-color: orange;"></span>
+                  <span class="legend-label">Zone sufficienti</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-color" style="background-color: yellow;"></span>
+                  <span class="legend-label">Zone buone</span>
+                </div>
+                <div class="legend-item">
+                  <span class="legend-color" style="background-color: green;"></span>
+                  <span class="legend-label">Zone ottime</span>
+                </div>
+              </div>
+              
+            </div>
+
+
+            <div *ngFor="let quartiere of quartieri">
+              <div class="filter-container">
+               
+                <h3>{{ quartiere.nome }} <i class="fa-solid fa-palette" (click)="coloraQuartiere(quartiere.nome)" style="cursor: pointer;margin-right: 10px;"></i> 
+                  <i class="fa-solid fa-circle-info" (click)="showMoranPanel(quartiere)" style="cursor: pointer;margin-right: 10px;"></i>
+                  <i class="fa-solid fa-euro-sign" (click)="inserisciPrezzoMedio(quartiere)" style="cursor: pointer;"></i>
+                  </h3> 
+              
+                <ul>
+                  <form *ngFor="let immobile of lista_immobili_candidati; let i = index">
+                    <div *ngIf="immobile.quartiere === quartiere.nome">
+                      
+                        <hr>
+                      
+                          
+                            <label for="range-slider-{{i}}" *ngIf="!immobile.isEditing">
+                              {{ immobile.nome !='' ? immobile.nome : 'Immobile.nome '}}
+                            </label>
+                            
+                            <i class="fa fa-pencil" (click)="apriDialogNome(immobile)" style="cursor: pointer; margin-left: 5px;"></i>
+                            <br>
+                            <br>
+                            <label >
+                               Prezzo: {{ immobile.prezzo!=0 ? '€'+ immobile.prezzo : 'Inserisci un prezzo' }} 
+
+                            </label>
+                            <br>
+                            
+                            <label style="margin-bottom: 5px;" *ngIf="immobile.rank >= 0">
+                              Punteggio: {{ immobile.rank }}
+                              <i id="tooltip-icon" class="fa-solid fa-circle-info" style="cursor: pointer;"></i>
+                              <span class="tooltip-text">
+                                Più alto è il punteggio, più l'immobile è in linea con le preferenze espresse nel questionario
+                              </span>
+                            </label>
+                           <br>
+                           
+                        <input type="range"  id="range-slider-{{i}}" min="300"  max="500" step="10" [value]="immobile.raggio_vicinato" (input)="modificaRaggioImmobile($event, immobile)">
+                        <div class="range-value">{{immobile.raggio_vicinato}} m</div>
+                        <div style="margin-top: 10px; "class="range-container">
+                         
+                          <button class="btn btn-primary" (click)="apriDialogPrezzo(immobile)">Inserisci prezzo</button>
+                        </div>
+                      </div>
+                      </form>
+                    
+                  
+                </ul>
+              </div>
+            </div>
+            
+            <div *ngIf="lista_aree_candidate.length>0" class="filter-container">
+              <h3>Aree </h3>
+              <form *ngFor="let area of lista_aree_candidate; let i = index">
+                <hr><label for="area-size-{{i}}">Area {{i + 1}}</label>
+                <br>
+                <label style="margin-bottom: 5px;" *ngIf="area.rank >= 0">
+                  Punteggio: {{ area.rank }}
+                  <i id="tooltip-icon" class="fa-solid fa-circle-info" style="cursor: pointer;"></i>
+                  <span class="tooltip-text">
+                    Più alto è il punteggio, più l'immobile è in linea con le preferenze espresse nel questionario
+                  </span>
+                </label>
+                <br>
+                <input type="range" id="area-size-{{i}}" min="300" max="500" step="10" [value]="area.raggio_vicinato" (input)="modificaRaggioArea($event, area)">
+               
+                <div class="range-value">{{area.raggio_vicinato}} m</div>
+              </form>
+            </div>
+            
+             
+          </div>     
+  </div>
+      </section>
+  
+     
+  </div>
+  </div>
+  <div id="priceModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="chiudiDialogPrezzo()">&times;</span>
+      <p>Inserisci un prezzo per l'immobile:</p>
+      <input type="number" class="modal_input" id="priceInput">
+      <button class="modal_button" (click)="modificaPrezzo()">OK</button>
+    </div>
+  </div>
+  <div id="changeNameModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="chiudiDialogNome()">&times;</span>
+      <p>Inserisci un nome per l'immobile:</p>
+      <input type="text" class="modal_input" id="nameInput">
+      <button class="modal_button" (click)="modificaNome()">OK</button>
+    </div>
+  </div>
+  <div id="prezzoMedioModal" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="chiudiDialogPrezzoMedio()">&times;</span>
+      <p>Inserisci il prezzo medio degli immobili in questo quartiere:</p>
+      <input type="number" class="modal_input" id="prezzoMedioInput">
+      <button class="modal_button" (click)="modificaPrezzoMedio()">OK</button>
+    </div>
+  </div>
+</main>
+

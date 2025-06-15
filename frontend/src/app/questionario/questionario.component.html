@@ -1,0 +1,39 @@
+<div class="book-container">
+  <div id="error-popup">
+    Devi inserire almeno una preferenza
+  </div>
+  <div class="book-cover">
+    <img src="assets/logo_progetto.png" alt="Home Zone Analyzer Logo" class="brand-logo">
+    <h2 class="book-title">Questionario di preferenze</h2>
+  </div>
+  <form [formGroup]="questionarioForm" (ngSubmit)="onSubmit()">
+  <div class="book-page">
+    <div class="left-page">
+      <h4 class="text-center">Vicinanza</h4><br>
+        <div *ngFor="let question of questions.slice(0, Math.ceil(questions.length / 2)); let i = index" class="form-group">
+          <label>{{ question.domanda }}</label>
+          <input type="range" class="range-slider" formControlName="{{ question.tipo }}" min="0" max="5" (input)="updateRangeValue($event, i)">
+          <div class="range-value">{{ questionarioForm.get(question.tipo)?.value }}</div>
+
+        </div>
+      
+    </div>
+    <div class="right-page">
+      <h4 class="text-center">Densità</h4><br>
+        <div *ngFor="let question of questions.slice(Math.ceil(questions.length / 2), questions.length); let i = index" class="form-group">
+          <label>{{ question.domanda }}</label>
+          <input type="range" class="range-slider" formControlName="{{ question.tipo }}" min="0" max="5" (input)="updateRangeValue($event, i + Math.ceil(questions.length / 2))">
+          <div class="range-value">{{ questionarioForm.get(question.tipo)?.value }}</div>
+
+        </div>
+        
+      
+      
+    </div>
+    
+  </div>
+  <div class="text-center mt-4">
+    <button type="submit" class="btn btn-primary" type="submit">Invia</button>
+  </div>
+</form>
+</div>

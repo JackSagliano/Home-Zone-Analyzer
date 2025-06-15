@@ -1,0 +1,491 @@
+/* Stili per l'intestazione */
+header {
+  background-color: #0044cc; /* Colore di sfondo */
+  color: white; /* Colore del testo */
+  padding: 0.5em 2em; /* Spaziatura */
+  display: flex; /* Layout flessibile */
+  justify-content: space-between; /* Distribuzione dello spazio */
+  align-items: center; /* Allineamento verticale */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombra */
+  position: relative; /* Posizione relativa per l'effetto di sovrapposizione */
+  z-index: 9999;
+}
+
+/* Stili per il logo */
+header .logo img {
+  height: 60px; /* Altezza del logo */
+  transition: transform 0.3s ease; /* Transizione per l'effetto di hover */
+}
+
+header .logo img:hover {
+  transform: scale(1.1); /* Effetto di ingrandimento al passaggio del mouse */
+}
+
+/* Stili per la barra di navigazione */
+nav ul {
+  list-style: none; /* Rimuove i bullet points */
+  display: flex; /* Layout flessibile */
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin-left: 2em; /* Spaziatura tra gli elementi */
+}
+
+nav ul li a {
+  color: white; /* Colore del testo */
+  text-decoration: none; /* Rimuove la sottolineatura */
+  font-weight: bold; /* Testo in grassetto */
+  padding: 0.5em 1em; /* Spaziatura interna */
+  border-radius: 5px; /* Angoli arrotondati */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transizioni per gli effetti di hover */
+}
+
+/* Stili per il link attivo */
+nav ul li a.active,
+nav ul li a:hover {
+  background-color: #003399; /* Colore di sfondo al passaggio del mouse */
+  color: #f0f0f0; /* Colore del testo al passaggio del mouse */
+}
+
+/* Stili per il main */
+main {
+  display: flex;
+  height: calc(100vh - 70px); /* Altezza del main calcolata sottraendo l'altezza dell'header */
+  overflow-y: hidden; /* Nasconde eventuali overflow */
+  align-items: center;
+}
+
+.listing__facets {
+  width: 15%; /* Larghezza della sidebar */
+  height: calc(100% - 80px); /* Altezza calcolata sottraendo l'altezza dell'header */
+  overflow-y: auto; /* Aggiunge scroll verticale alla sidebar se necessario */
+  margin-top: 80px; /* Allinea la sidebar sotto l'header */
+  display: flex;
+  
+  justify-content: center; /* Centra verticalmente le icone */
+}
+
+.main-content {
+  width: 100%; /* Larghezza del contenuto principale */
+  justify-content: center; /* Centra la mappa orizzontalmente */
+  align-items: center; /* Centra la mappa verticalmente */
+  
+}
+
+.map {
+  width: 100%; /* Larghezza della mappa */
+  height: calc(100vh - 80px); /* Altezza della mappa */
+}
+
+.filter-container {
+  width: 100%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.filter-container h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.filter-content {
+  padding-top: 20px;
+}
+
+.filter-item {
+  margin-bottom: 15px;
+}
+
+.form-check {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-check-input {
+  margin-right: 10px;
+  width: 18px; /* Adjust the width */
+  height: 18px; /* Adjust the height */
+  transform: scale(1.1); /* Adjust the scale */
+  outline: none; /* Remove the blue outline */
+  box-shadow: none; /* Remove any additional shadows */
+}
+
+.form-check-label {
+  font-size: 14px;
+  color: #333;
+}
+
+@media (max-width: 768px) {
+  .content-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  
+  .filter-container {
+    width: 90%;
+  }
+
+  .filter-container {
+    margin-top: 20px;
+  }
+
+  .listing__facets {
+    width: 100%;
+  }
+
+  .main-content {
+    width: 100%;
+  }
+}
+
+.facets-section {
+ 
+  background: #fff;
+  
+  width: 105px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25);
+  z-index: 1036;
+  top: 0;
+}
+
+.facets-section__main-categories {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.facets-section__main-categories .btn {
+  margin-bottom: 20px; /* Spazio tra le icone */
+}
+
+.btn.btn-revolution-white {
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+.facets-section__category-logo {
+  color: #3c4043;
+  padding: 0;
+  box-shadow: 0 0;
+  font-size: 35px;
+  font-size: 2.5rem;
+}
+
+.facets-section__category-logo .icon-category-active,
+.facets-section__category-logo .icon-euro-active,
+.facets-section__category-logo .icon-filters-active,
+.facets-section__category-logo .icon-marca-active {
+  display: none;
+}
+
+[class*=" icon-"],
+[class^=icon-] {
+  font-family: icomoonUnieuro !important;
+  font-style: normal;
+  /* font-weight: 400; */
+  /* font-variant: normal; */
+  /* text-transform: none; */
+  /* line-height: 1; */
+  /* -webkit-font-smoothing: antialiased; */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.facets-section__category-description {
+  font-size: 8px;
+  font-size: .5714285714rem;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  justify-content: center;
+  display: flex;
+  margin-bottom: 30px;
+  white-space: normal; /* Permette al testo di andare a capo */
+  word-wrap: break-word; /* Gestisce le parole lunghe */
+  text-align: center; /* Centra il testo */
+}
+
+.hidden-section {
+  display: none;
+  position: absolute;
+  top: 80px; /* Adjust based on your header height */
+  left: 110px; /* Adjust based on your sidebar width */
+  width: calc(100% - 110px); /* Adjust based on your sidebar width */
+  height: calc(100vh - 80px); /* Adjust based on your header height */
+  background: white;
+  z-index: 10;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Rimuove l'effetto del rettangolo sui pulsanti */
+.btn-revolution-white {
+  outline: none; /* Rimuove il contorno predefinito */
+  box-shadow: none; /* Rimuove l'ombra */
+}
+
+.btn-revolution-white:focus {
+  outline: none; /* Rimuove il contorno quando il pulsante è in focus */
+  box-shadow: none; /* Rimuove l'ombra quando il pulsante è in focus */
+}
+
+.flyout {
+  position: fixed;
+  width: 375px;
+  top: 0;
+  height: 100%;
+  z-index: 1035;
+  background: #fff;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .3s;
+  padding: 88px 20px 0;
+}
+
+.facet-container {
+  left: 95px !important;
+  overflow: auto;
+  scrollbar-width: thin; /* Larghezza della scrollbar */
+  scrollbar-color: #888 #f1f1f1; /* Colore del pollice e del track della scrollbar */
+  -ms-overflow-style: -ms-autohiding-scrollbar; /* Nasconde la scrollbar automaticamente quando non è in uso */
+}
+
+.flyout.slide-left {
+  left: 0;
+  transform: translateX(-150%);
+  border-radius: 0 20px 0 0;
+  right: auto;
+}
+
+.flyout.is-active {
+  visibility: visible;
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.facet-container.is-active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+input[type="range"]:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.legend {
+  margin-top: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.legend-color {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.legend-label {
+  font-size: 14px;
+}
+
+.range-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.range-value {
+  margin-right: 10px; /* Distanza tra il valore e il pulsante */
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 500px; /* Max width */
+  border-radius: 10px; /* Rounded corners */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal_input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal_button {
+  background-color: #4a90e2; /* Colore del bottone */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  text-align: center;
+}
+
+#update_price:hover {
+  background-color: #357ab8;
+}
+/* Chrome, Safari, Edge, Opera */
+.modal_input::-webkit-outer-spin-button,
+.modal_input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.modal_input {
+  -moz-appearance: textfield;
+}
+span{
+  
+    display: flex;
+    justify-content: flex-end; /* Allinea la "x" a destra */
+    position: relative;
+  
+}
+
+/*.sidebar {
+  position: fixed;
+  right:0;
+  z-index: 99999;
+  width: 300px;
+  height: max-content;
+  background-color: #f4f4f4;
+  border-left: 1px solid #ccc;
+  padding: 10px;
+  transition: right 0.3s;
+  overflow: auto; 
+}*/
+.sidebar {
+  position: fixed;
+  right: 0;
+ 
+  z-index: 9999;
+  width: 300px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+  background: none;
+  border: none;
+  padding: 0;
+  z-index: 10000; /* Assicurati che il pulsante sia sopra tutto il resto */
+}
+
+.close-button i {
+  font-size: 20px;
+}
+
+#poi-density-interpretation-display, #moran-interpretation-display {
+  font-size: 14px;
+  color: #555;
+}
+
+p {
+  margin: 10px 0;
+}
+
+#poi-density-interpretation-display, #moran-interpretation-display {
+  font-size: 16px;
+  color: #333;
+}
+
+p {
+  margin: 10px 0;
+  line-height: 1.6;
+}
+.loading-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  display: none; /* Nascondi il popup inizialmente */
+}
+
+
+
+
+.tooltip-text {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  margin-left: -60px;
+}
+
+#tooltip-icon:hover + .tooltip-text {
+  visibility: visible;
+ 
+}

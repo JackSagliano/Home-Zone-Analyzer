@@ -1,0 +1,16 @@
+<div class="logo-container">
+  <img src="assets/logo_progetto.png" alt="Logo" class="logo">
+</div>
+<div class="background">
+  <div class="welcome-card">
+    <div class="character-and-speech">
+      <img src="assets/omino_sondaggio.png" alt="Character" class="character">
+      <div class="speech-bubble" (click)="showFullText()">
+        <p id="speechText"></p>
+        <div class="button-container" [class.hidden]="!showButton">
+          <button class="btn btn-primary" (click)="startQuestionnaire()">Inizia questionario</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
