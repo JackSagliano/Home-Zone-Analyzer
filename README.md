@@ -39,6 +39,7 @@ The app uses open datasets in GeoJSON format for the city of **Bologna**, includ
 - City districts
 
 You can find the following data at: https://opendata.comune.bologna.it/pages/home/)
+
 ---
 
 ## 🚀 Getting Started (Local)
