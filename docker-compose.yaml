@@ -37,7 +37,7 @@ services:
     depends_on:
       - backend
     ports:
-      - "4200:80"  # Adatta la porta secondo le esigenze del tuo progetto
+      - "4200:80" 
     networks:
       - backend_network
 
